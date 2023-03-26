@@ -9,7 +9,7 @@ RSpec.describe "Integration testing" do
 
   describe "#show_menu behaviour" do
     it "returns a list of dishes with prices of the restaurant's menu" do
-      expect(Kernel).to receive(:puts).with("Pizza, £12.45\nOatcakes, £8.55\nFrench Toast, £9.15\nNoodles, £10.55")
+      expect(Kernel).to receive(:puts).with("Pizza, £12.99\nOatcakes, £8.49\nFrench Toast, £8.99\nNoodles, £10.55")
       order.show_menu
     end
   end
@@ -25,17 +25,20 @@ RSpec.describe "Integration testing" do
       order.add_dish
       order.add_dish
       order.remove_dish
-      expect(order.view_basket).to eq [{:dish=>"Pizza", :price=>12.45}]
+      expect(order.view_basket).to eq [{:dish=>"Pizza", :price=>12.99}]
     end
 
-    xit "checkouts order with added dishes in the basket" do
+    it "checkouts order with added dishes in the basket" do
+      receipt = OrderReceipt.new(restaurant, order, Kernel)
       expect(Kernel).to receive(:puts).with("Please type the dish you want to add to the basket:")
       expect(Kernel).to receive(:gets).and_return("Pizza")
       expect(Kernel).to receive(:puts).with("Please type the dish you want to add to the basket:")
       expect(Kernel).to receive(:gets).and_return("Noodles")
+      expect(Kernel).to receive(:puts).with("Thank you for you order. Here is your receipt:")
+      expect(Kernel).to receive(:puts).and_return("Pizza, £12.99\nNoodles, £10.55")
       order.add_dish
       order.add_dish
-      order.checkout
+      order.checkout(receipt)
       
       
     end

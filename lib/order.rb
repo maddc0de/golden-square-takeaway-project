@@ -37,17 +37,30 @@ class Order
     }
   end
 
-  def checkout(receipt)
+  def checkout(receipt) # OrderReceipt instance
     fail "There is nothing to checkout, basket is empty." if @basket == []
-
+    receipt.print
   end
   
 
 end
 
+# class Restaurant
+#   def initialize
+
+#   end
+
+#   def dishes
+#     [{:dish => "Pizza", :price => 12.45},
+#     {:dish => "Oatcakes", :price => 8.55},
+#     {:dish => "French Toast", :price => 9.15},
+#     {:dish => "Noodles", :price => 10.55}]
+#   end
+# end
 
 
 # resto = Restaurant.new
 # order = Order.new(resto, Kernel)
+# order.add_dish
 # order.add_dish
 # order.view_basket

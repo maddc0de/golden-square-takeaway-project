@@ -42,7 +42,7 @@ RSpec.describe Order do
       order.add_dish
       order.add_dish
       order.remove_dish
-      expect(order.view_basket).to eq [{:dish=>"Pizza", :price=>12.45}]
+      expect(order.view_basket).to eq [{:dish=>"Pizza", :price=>12.99}]
     end
   end
 
