@@ -30,17 +30,16 @@ RSpec.describe "Integration testing" do
 
     it "checkouts order with added dishes in the basket" do
       receipt = OrderReceipt.new(restaurant, order, Kernel)
-      expect(Kernel).to receive(:puts).with("Please type the dish you want to add to the basket:")
-      expect(Kernel).to receive(:gets).and_return("Pizza")
-      expect(Kernel).to receive(:puts).with("Please type the dish you want to add to the basket:")
-      expect(Kernel).to receive(:gets).and_return("Noodles")
-      expect(Kernel).to receive(:puts).with("Thank you for you order. Here is your receipt:")
-      expect(Kernel).to receive(:puts).and_return("Pizza, £12.99\nNoodles, £10.55")
+      expect(Kernel).to receive(:puts).with("Please type the dish you want to add to the basket:").ordered
+      expect(Kernel).to receive(:gets).and_return("Pizza").ordered
+      expect(Kernel).to receive(:puts).with("Please type the dish you want to add to the basket:").ordered
+      expect(Kernel).to receive(:gets).and_return("Noodles").ordered
+      expect(Kernel).to receive(:puts).with("Thank you for you order. Here is your receipt:").ordered
+      expect(Kernel).to receive(:puts).with(["Dish: Pizza, Price: £12.99", "Dish: Noodles, Price: £10.55"]).ordered
+      expect(Kernel).to receive(:puts).with("Total Price: £23.54")
       order.add_dish
       order.add_dish
-      order.checkout(receipt)
-      
-      
+      order.checkout(receipt)  
     end
   end
 

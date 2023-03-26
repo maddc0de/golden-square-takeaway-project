@@ -2,9 +2,9 @@ require_relative '../lib/order'
 
 RSpec.describe Order do
   let(:restaurant) {double :restaurant, dishes: [
-    {:dish => "Pizza", :price => 12.45},
-    {:dish => "Oatcakes", :price => 8.55},
-    {:dish => "French Toast", :price => 9.15},
+    {:dish => "Pizza", :price => 12.99},
+    {:dish => "Oatcakes", :price => 8.49},
+    {:dish => "French Toast", :price => 8.99},
     {:dish => "Noodles", :price => 10.55}
     ] }
 
@@ -26,7 +26,7 @@ RSpec.describe Order do
   
   describe "#show_menu behaviour" do
     it "returns a list of dishes with prices of the restaurant's menu" do
-      expect(io).to receive(:puts).with("Pizza, £12.45\nOatcakes, £8.55\nFrench Toast, £9.15\nNoodles, £10.55")
+      expect(io).to receive(:puts).with("Pizza, £12.99\nOatcakes, £8.49\nFrench Toast, £8.99\nNoodles, £10.55")
       order.show_menu
     end
   end
