@@ -1,0 +1,3 @@
+class OrderReceipt
+  
+end
